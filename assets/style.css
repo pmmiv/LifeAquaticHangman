@@ -4,22 +4,21 @@ body {
 	/*background-repeat: no-repeat;*/
 	margin: 0;
 	padding: 0;
-	color: #333;
 	box-sizing: border-box;
 }
 
 h1 {
 	margin: 0;
-	color: yellow;
+	color: #D9ECA3;
 }
 
 .gameColumn {
 	margin: 50px 0;
 	text-align: center;
-	background-color: rgba(0, 0, 0, .2);
+	background-color: rgba(144, 209, 191, .8);
 	width: 60%;
 	height: 500px;
 	position: relative;
-	left: 10%;
+	left: 15%;
 	padding: 0 5%;
 }

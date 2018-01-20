@@ -4,7 +4,6 @@
 	<meta charset="UTF-8">
 	<title>Hangman</title>
 	<link rel="stylesheet" href="assets/style.css">
-	<script src="javascript/script.js"></script>
 </head>
 <body>
 	<div class="gameColumn">
@@ -12,17 +11,29 @@
 	<h1>Life Aquatic Hangman</h1>
 
 	<!-- instructions -->
-	<p>Press the button to generate a word! Guess the letters contained within to reveal the whole word by typing the letters. You are allowed 8 incorrect guesses before you lose. If you successfully reveal the entire word with incorrect guesses remaining, you win!</p>
+	<p>Press the <strong>enter</strong> to generate a word! Guess the letters contained within to reveal the whole word by typing the letters. You are allowed 8 incorrect guesses before you lose. If you successfully reveal the entire word with incorrect guesses remaining, you win!</p>
 
 	<!-- number of incorrect guesses remaining -->
-	<h2>Incorrect Guesses Remaining <br> <span id=incorrectGuesses></span></h2>
+	<h2>Incorrect Guesses Remaining: <span id="incorrectGuesses"></span></h2>
 
 	<!-- blanks / words -->
-
-	<!-- button generates new word, resets guesses -->
-	<button></button>
+	<div id="wordInPlay"></div>
+	<div id="letterInPlay"></div>
 		
 	</div>
+
+<!-- 	<script type="text/javascript">
+		var letterInPlay = document.getElementById("letterInPlay");
+
+		var lettersToGuess = ["nah", "yeh", "YAH"]
+
+		for (j = 0; j < lettersToGuess.length; j++) {
+			var newLetter = document.createElement("div");
+			newLetter.innerHTML = lettersToGuess[j];
+			letterInPlay.appendChild(newLetter);
+		}		
+	</script> -->
+	<script src="javascript/script.js"></script>
 
 </body>
 </html>

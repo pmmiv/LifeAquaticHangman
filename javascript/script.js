@@ -1,40 +1,47 @@
-// create an array of words
-// var allWords =  ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+var allWords =  ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var remainingWords = allWords;
+var wordInPlay = 0;
+var lettersToGuess = 0;
+// var letterInPlay = document.getElementById("letterInPlay");
+var letterInPlay = document.getElementById("letterInPlay");
+console.log(letterInPlay);
+var incorrectGuesses = 8;
+	
+document.onkeyup =	function (event) {
+	if (event.key === "Enter") {
+		var i = Math.floor(Math.random() * remainingWords.length);
+		wordInPlay = remainingWords[i];
+		remainingWords.splice(i, 1);
+		lettersToGuess = wordInPlay.split('');
+		// sleep(1000);
 
-// once a word has been played remove it from possibilities
-
-// var remainingWords =  (allWords - wordsPlayed);
-// var wordsPlayed = wordsPlayed + wordInPlay; 
-// clearly problematic
-
-// create a way of picking one randomly
-
-
-// count the number of letters of the word and generate that number of blanks
-
-// answer[];
-// letters = wordInPlay.charAt[i]
-
-// make an array of the letters using .charAt and .push
-
-// display the number of blanks on screen when the button is pressed and the word is picked
-
-
-// display the correct letters picked in order
-
-
-// keep track of the number of incorrect guesses only track alphabetical letters
-	var incorrectGuesses = 8;
-	// - {1 entrynotcontained in wordInPlay};
-
-
-// display number of incorrect guesses
-	document.getElementById("incorrectGuesses")= incorrectGuesses;
-
-
-// when the max number of incorrect guesses has been reached tell the player they've lost and disable guessing
-
-
-
+//will have to be changed to create an element for each letterToGuess
+		// document.getElementById("wordInPlay").textContent = wordInPlay; 
+		
+		document.getElementById("incorrectGuesses").textContent = incorrectGuesses;
+// this loop works, but it doesn't work in the js doc. I believe the issue is that the array lettersToGuess is being created before the word has been decided.
+		for (j = 0; j < lettersToGuess.length; j++) {
+			var newLetter = document.createElement("div");
+			newLetter.innerHTML = lettersToGuess[j];
+			letterInPlay.appendChild(newLetter);
+		}
+// once I figure out how to generate the letters I can style them to be invisible
+	}
+	// returns an error, but runs fine.
+	else if (lettersToGuess.indexOf(event.key) !== -1) {
+// they will need to be restyled when correctly guessed. Need to account for the same letter appearing twice.
+		console.log(event.key);
 // once all of the correct letters have been assigned tell the player they've won and disable guessing
+	}
+	else if (incorrectGuesses < 0){
+		alert("You lose. Press enter to generate another word.");
+	}
+	else if (alphabet.indexOf(event.key) !== -1) {
+		incorrectGuesses--;
+		document.getElementById("incorrectGuesses").textContent = incorrectGuesses;		
+	}
+}
+
+
 // # letters to be guessed in wordInPlay = 0, you win
