@@ -1,47 +1,80 @@
-var allWords =  ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
+// var allWords =  ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var remainingWords = allWords;
+var remainingWords = ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
 var wordInPlay = 0;
-var lettersToGuess = 0;
-// var letterInPlay = document.getElementById("letterInPlay");
+var lettersToGuess = [];
+var correctLetters = [];
 var letterInPlay = document.getElementById("letterInPlay");
-console.log(letterInPlay);
-var incorrectGuesses = 8;
+var wrongLettersTried = document.getElementById("wrongLettersTried");
+var incorrectGuesses = 15;
 	
-document.onkeyup =	function (event) {
-	if (event.key === "Enter") {
-		var i = Math.floor(Math.random() * remainingWords.length);
-		wordInPlay = remainingWords[i];
-		remainingWords.splice(i, 1);
-		lettersToGuess = wordInPlay.split('');
-		// sleep(1000);
+// function for resetting the letter in play div
+function reset () {
+	document.getElementById("letterInPlay").innerHTML = "";
+	incorrectGuesses = 15;
+	document.getElementById("incorrectGuesses").textContent = incorrectGuesses;	
+	wordInPlay = 0;
+	remainingWords = ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
+	correctLetters = [];
+	newWord();
+};
 
-//will have to be changed to create an element for each letterToGuess
-		// document.getElementById("wordInPlay").textContent = wordInPlay; 
-		
-		document.getElementById("incorrectGuesses").textContent = incorrectGuesses;
-// this loop works, but it doesn't work in the js doc. I believe the issue is that the array lettersToGuess is being created before the word has been decided.
-		for (j = 0; j < lettersToGuess.length; j++) {
-			var newLetter = document.createElement("div");
-			newLetter.innerHTML = lettersToGuess[j];
-			letterInPlay.appendChild(newLetter);
-		}
-// once I figure out how to generate the letters I can style them to be invisible
-	}
-	// returns an error, but runs fine.
-	else if (lettersToGuess.indexOf(event.key) !== -1) {
-// they will need to be restyled when correctly guessed. Need to account for the same letter appearing twice.
-		console.log(event.key);
-// once all of the correct letters have been assigned tell the player they've won and disable guessing
-	}
-	else if (incorrectGuesses < 0){
-		alert("You lose. Press enter to generate another word.");
-	}
-	else if (alphabet.indexOf(event.key) !== -1) {
-		incorrectGuesses--;
-		document.getElementById("incorrectGuesses").textContent = incorrectGuesses;		
+function newWord () {
+	document.getElementById("wrongLettersTried").innerHTML = "";
+	document.getElementById("letterInPlay").innerHTML = "";
+	var i = Math.floor(Math.random() * remainingWords.length);
+	wordInPlay = remainingWords[i];
+	remainingWords.splice(i, 1);
+	lettersToGuess = wordInPlay.split('');
+	correctLetters = wordInPlay.split('');
+	document.getElementById("incorrectGuesses").textContent = incorrectGuesses;
+	for (j = 0; j < lettersToGuess.length; j++) {
+		var newLetter = document.createElement("li");
+		newLetter.innerHTML = lettersToGuess[j];
+		letterInPlay.appendChild(newLetter);
+		newLetter.setAttribute("class", "hidden");
 	}
 }
 
 
-// # letters to be guessed in wordInPlay = 0, you win
+
+document.onkeyup =	function (event) {
+	if (event.key === "Enter" && remainingWords.length < 1) {
+		alert("You're all out of new words! Play again?")
+		reset();
+	}
+	else if (event.key === "Enter") {
+		newWord ();
+	}
+	else if (lettersToGuess.indexOf(event.key) !== -1 && lettersToGuess.length < 2 && remainingWords.length < 1) {
+		alert("Nice work! But you're out of new words. Play again?")
+		reset();
+	}
+	else if (lettersToGuess.indexOf(event.key) !== -1 && lettersToGuess.length < 2) {
+		alert("Nice round! Try another word! Your chances will not reset!")
+		newWord();
+	}
+	// returns an error, but runs fine.
+	else if (lettersToGuess.indexOf(event.key) !== -1 && wordInPlay !== 0) {
+// they will need to be restyled when correctly guessed. Need to account for the same letter appearing twice.
+		for (x = 0; x < lettersToGuess.length; x++) {
+			if (lettersToGuess[x] === event.key) {
+				lettersToGuess.splice(x, 1);
+				console.log(lettersToGuess);
+				// show.setAttribute("class", "shown");
+			}
+		}
+	}
+	else if (incorrectGuesses < 1){
+		alert("You lose. Try again?");
+		reset();
+	}
+	else if (alphabet.indexOf(event.key) !== -1 && wordInPlay !== 0 && correctLetters.indexOf(event.key) === -1) {
+		var newWrongLetter = document.createElement("span");
+		newWrongLetter.innerHTML = event.key;
+		wrongLettersTried.appendChild(newWrongLetter);
+		newWrongLetter.setAttribute("class", "wrongLetter");
+		incorrectGuesses--;
+		document.getElementById("incorrectGuesses").textContent = incorrectGuesses;	
+	}
+}

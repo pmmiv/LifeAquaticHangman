@@ -15,10 +15,34 @@ h1 {
 .gameColumn {
 	margin: 50px 0;
 	text-align: center;
-	background-color: rgba(144, 209, 191, .8);
+	color: #ddd;
+	background-color: rgba(20, 20, 20, .4);
 	width: 60%;
 	height: 500px;
 	position: relative;
 	left: 15%;
 	padding: 0 5%;
+}
+
+.hidden {
+	size: 2em;
+	/*color: transparent;*/
+	margin-right: 5px;
+	min-width: 10px;
+	border-bottom: 2px solid black;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+.wrongLetter {
+	margin-right: 10px;
+	text-transform: uppercase;
+}
+
+.shown {
+	color: purple;
+}
+
+#letterInPlay:nth-child(1) {
+	color: purple;
 }
