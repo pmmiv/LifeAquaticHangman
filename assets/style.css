@@ -5,6 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-size: 20px;
 }
 
 h1 {
@@ -24,12 +25,16 @@ h1 {
 	padding: 0 5%;
 }
 
-.hidden {
+#incorreectGuesses {
+	font-weight: bold;
+	color: red;
+}
+
+#letter0, #letter1, #letter2, #letter3, #letter4, #letter5, #letter6, #letter7, #letter8, #letter9, #letter10, #letter11, #letter12, #letter13, #letter14, #letter15, #letter16, #letter17, #letter18, #letter19, #letter20 {
 	size: 2em;
 	/*color: transparent;*/
 	margin-right: 5px;
 	min-width: 10px;
-	border-bottom: 2px solid black;
 	padding: 5px;
 	text-transform: uppercase;
 }
@@ -37,12 +42,4 @@ h1 {
 .wrongLetter {
 	margin-right: 10px;
 	text-transform: uppercase;
-}
-
-.shown {
-	color: purple;
-}
-
-#letterInPlay:nth-child(1) {
-	color: purple;
 }

@@ -15,7 +15,7 @@ function reset () {
 	document.getElementById("incorrectGuesses").textContent = incorrectGuesses;	
 	wordInPlay = 0;
 	remainingWords = ["jaguarshark", "oceanographer", "stevesie", "submarine", "documentary", "intern", "belafonte", "cody", "revenge", "pirates", "esteban"];
-	correctLetters = [];
+	correctLetters ;
 	newWord();
 };
 
@@ -29,10 +29,10 @@ function newWord () {
 	correctLetters = wordInPlay.split('');
 	document.getElementById("incorrectGuesses").textContent = incorrectGuesses;
 	for (j = 0; j < lettersToGuess.length; j++) {
-		var newLetter = document.createElement("li");
-		newLetter.innerHTML = lettersToGuess[j];
+		var newLetter = document.createElement("span");
+		newLetter.innerHTML = ("_");
 		letterInPlay.appendChild(newLetter);
-		newLetter.setAttribute("class", "hidden");
+		newLetter.setAttribute("id", ("letter" + j));
 	}
 }
 
@@ -40,29 +40,27 @@ function newWord () {
 
 document.onkeyup =	function (event) {
 	if (event.key === "Enter" && remainingWords.length < 1) {
-		alert("You're all out of new words! Play again?")
+		alert("You're all out of new words! Play again?");
 		reset();
 	}
 	else if (event.key === "Enter") {
 		newWord ();
 	}
-	else if (lettersToGuess.indexOf(event.key) !== -1 && lettersToGuess.length < 2 && remainingWords.length < 1) {
-		alert("Nice work! But you're out of new words. Play again?")
-		reset();
-	}
-	else if (lettersToGuess.indexOf(event.key) !== -1 && lettersToGuess.length < 2) {
-		alert("Nice round! Try another word! Your chances will not reset!")
+	else if (correctLetters.indexOf(event.key) !== -1 && wordInPlay !== 0) {
+		for (x = 0; x < correctLetters.length; x++) {
+			if (correctLetters[x] === event.key) {
+				document.getElementById("letter" + x).innerHTML = correctLetters[x];}
+		}
+		for (l = 0; l < lettersToGuess.length; l++) {
+			if (lettersToGuess[l] === event.key) {	
+				lettersToGuess.splice(l, 1);}
+		}
+		if (lettersToGuess.length === 0 && remainingWords.length < 1) {
+		alert("Nice work! But you're out of new words. Play again?");
+		reset();}
+		else if (lettersToGuess.length === 0) {
+		alert("Nice work! You figured out " + wordInPlay + "! Try another word! Your chances will not reset!");
 		newWord();
-	}
-	// returns an error, but runs fine.
-	else if (lettersToGuess.indexOf(event.key) !== -1 && wordInPlay !== 0) {
-// they will need to be restyled when correctly guessed. Need to account for the same letter appearing twice.
-		for (x = 0; x < lettersToGuess.length; x++) {
-			if (lettersToGuess[x] === event.key) {
-				lettersToGuess.splice(x, 1);
-				console.log(lettersToGuess);
-				// show.setAttribute("class", "shown");
-			}
 		}
 	}
 	else if (incorrectGuesses < 1){
