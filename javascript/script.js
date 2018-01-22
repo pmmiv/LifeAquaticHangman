@@ -62,7 +62,7 @@ document.onkeyup =	function (event) {
 				lettersToGuess.splice(l, 1);}
 		}
 		if (lettersToGuess.length === 0 && remainingWords.length < 1) {
-		document.getElementById("message").innerHTML = ("Nice work! But you're out of new words. Press <strong>enter</strong> again?");
+		document.getElementById("message").innerHTML = ("Nice work! Press <strong>enter</strong> to continue.");
 		}
 		else if (lettersToGuess.length === 0) {
 		document.getElementById("message").innerHTML = ("Nice work! You solved " + wordInPlay + "! Press <strong>enter</strong> to try another word! Your chances will not reset!");
