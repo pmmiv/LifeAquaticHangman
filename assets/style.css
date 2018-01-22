@@ -6,23 +6,25 @@ body {
 	padding: 0;
 	box-sizing: border-box;
 	font-size: 20px;
+	font-family: 'Oxygen', sans-serif;
 }
 
 h1 {
 	margin: 0;
 	color: #D9ECA3;
+	font-family: 'Josefin Slab', serif;
 }
 
 .gameColumn {
 	margin: 50px 0;
 	text-align: center;
-	color: #ddd;
-	background-color: rgba(20, 20, 20, .4);
+	color: #eee;
+	background-color: rgba(80, 80, 80, .4);
 	width: 60%;
 	height: 500px;
 	position: relative;
 	left: 15%;
-	padding: 0 5%;
+	padding: 10px 5%;
 }
 
 #incorreectGuesses {
@@ -30,8 +32,9 @@ h1 {
 	color: red;
 }
 
+
 #letter0, #letter1, #letter2, #letter3, #letter4, #letter5, #letter6, #letter7, #letter8, #letter9, #letter10, #letter11, #letter12, #letter13, #letter14, #letter15, #letter16, #letter17, #letter18, #letter19, #letter20 {
-	size: 2em;
+	font-size: 2em;
 	/*color: transparent;*/
 	margin-right: 5px;
 	min-width: 10px;
@@ -42,4 +45,12 @@ h1 {
 .wrongLetter {
 	margin-right: 10px;
 	text-transform: uppercase;
+}
+
+#message {
+	margin-top: 10px;
+	}
+
+#letterInPlay {
+	margin-top: 20px;
 }

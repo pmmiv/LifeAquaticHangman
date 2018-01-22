@@ -44,7 +44,7 @@ document.onkeyup =	function (event) {
 		document.getElementById("message").innerHTML = "You're all out of new words. Press <strong>enter</strong> to play again!"
 		remainingWords = 0;
 	}
-	else if (event.key === "Enter" && remainingWords === 0 || event.key === "Enter" && incorrectGuesses === -1) {
+	else if (event.key === "Enter" && remainingWords === 0 || event.key === "Enter" && incorrectGuesses <= -1) {
 		reset();
 	}
 	// request a new word, and there are words remaining.
@@ -65,14 +65,14 @@ document.onkeyup =	function (event) {
 		document.getElementById("message").innerHTML = ("Nice work! But you're out of new words. Press <strong>enter</strong> again?");
 		}
 		else if (lettersToGuess.length === 0) {
-		document.getElementById("message").innerHTML = ("Nice work! You figured out " + wordInPlay + "! Press <strong>enter</strong> to try another word! Your chances will not reset!");
+		document.getElementById("message").innerHTML = ("Nice work! You solved " + wordInPlay + "! Press <strong>enter</strong> to try another word! Your chances will not reset!");
 		}
 	}
 	else if (incorrectGuesses < 1){
 		document.getElementById("message").innerHTML = "You lose. Press enter to try again!";
 			incorrectGuesses--
 	}
-	else if (alphabet.indexOf(event.key) !== -1 && wordInPlay !== 0 && correctLetters.indexOf(event.key) === -1) {
+	else if (alphabet.indexOf(event.key) !== -1 && wordInPlay !== 0 && correctLetters.indexOf(event.key) === -1 && lettersToGuess.length > 0) {
 		if (wrongLettersTried.indexOf(event.key) === -1) {		
 		var newWrongLetter = document.createElement("span");
 		newWrongLetter.innerHTML = event.key;
