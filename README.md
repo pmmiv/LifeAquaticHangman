@@ -20,5 +20,6 @@ This project is available at http://pmmiv.com/LifeAquaticHangman/
 ### Inspiring Quote: 
 
 > Son of a bitch, I'm sick of these dolphins.
-- Cpt. Steve Zissou
+
+Cpt. Steve Zissou
 
