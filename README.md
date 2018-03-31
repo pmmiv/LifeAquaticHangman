@@ -8,7 +8,7 @@ This project was built to explore hangman logic and to worship the captain we ne
 
 ## Deployment:
 
-This project is available at http://www.pmmiv.com/hangman
+This project is available at http://pmmiv.com/LifeAquaticHangman/
 
 ### Notable Technologies Used: 
 
